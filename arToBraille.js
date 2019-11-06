@@ -67,8 +67,8 @@ function mad() {
 	let regExpCombination = {
 		'\u2802\u2801' : '\u2801', // fatha ketemu alif
 		'\u2802\u2815' : '\u2815', // fathah ketemu alif matsuro
-		'\u2811\u280a\u2812?' : '\u280a',	// kasrah ketemu ya ketemu sukun (sukun nyatidak wajib)
-		'\u2825\u283a\u2812?' : '\u283a',	// dommah ketemu waw ketemu sukun (sukun nya tidak wajib)
+		'\u2811\u280a\u2812' : '\u280a',	// kasrah ketemu ya ketemu sukun 
+		'\u2825\u283a\u2812' : '\u283a',	// dommah ketemu waw ketemu sukun 
 	}
 	for (let key in regExpCombination) {
 		arab = arab.replace(new RegExp(key, 'g'), regExpCombination[key])
