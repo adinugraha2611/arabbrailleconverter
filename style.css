@@ -3,19 +3,18 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   font-size: medium;
+  width: 100%;
 }
 header {
-  font-size: large;
-  margin: 15px;
+  font-size: 36px;
+  margin: 10px;
 }
 main {
   text-align: center;
 }
 label {
   display: inline-block;
-  height: 10vh;
-  margin: 20px auto;
-  width: 100%;
+  margin: 10px auto;
 }
 #text-input {
   height: 30vh;
@@ -24,13 +23,16 @@ label {
 }
 input[type="button"] {
   display: inline-block;
-  height: 10vh;
   margin: 20px auto;
-  width: 100%;
 }
 #braille {
   border: 1px solid lightblue;
   height: 30vh;
   max-width: 100%;
   margin: 20px 10px;
+}
+article {
+  margin: auto;
+  text-align: left;
+  max-width: 100%;
 }
