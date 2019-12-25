@@ -6,15 +6,18 @@ body {
   width: 100%;
 }
 header {
-  max-height: 20vmin;
+  max-height: 15vmin;
   margin: 10px;
+}
+.button {
+  text-align: center;
 }
 label {
   display: inline-block;
   margin: 10px auto;
 }
 #text-input {
-  height: 30vh;
+  height: 20vh;
   width: 100%;
   max-width: 100%;
 }
@@ -23,8 +26,6 @@ input[type="button"] {
   margin: 15px auto;
   padding: 10px 20px;
   height: 10vmin;
-  width: 100%;
-  text-align: center;
 }
 #braille {
   border: 1px solid lightblue;
