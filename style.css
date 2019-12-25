@@ -7,7 +7,7 @@ body {
 }
 header {
   max-height: 15vmin;
-  margin-bottom: 20px;
+  margin: 0px 0px 25px 0px;
 }
 .button {
   text-align: center;
