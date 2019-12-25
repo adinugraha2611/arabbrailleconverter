@@ -1,97 +1,274 @@
+﻿// -----------BEGINNING OF HTML SCRIPTS-----------//
 
+// calling HTML elements and set them into variables
+const textInput = document.getElementById('text-input')
+const convertButton = document.getElementById('convert-button')
+const brailleOutput = document.getElementById('braille')
+// set default textInput value
+textInput.value = 'بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ\n\nاَللّٰهُ لَآ اِلٰهَ اِلَّا هُوَۚ اَلْحَيُّ الْقَيُّوْمُ ەۚ لَا تَأْخُذُهٗ سِنَةٌ وَّلَا نَوْمٌۗ لَهٗ مَا فِى السَّمٰوٰتِ وَمَا فِى الْاَرْضِۗ مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهٗٓ اِلَّا بِاِذْنِهٖۗ يَعْلَمُ مَا بَيْنَ اَيْدِيْهِمْ وَمَا خَلْفَهُمْۚ وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِّنْ عِلْمِهٖٓ اِلَّا بِمَا شَاۤءَۚ وَسِعَ كُرْسِيُّهُ السَّمٰوٰتِ وَالْاَرْضَۚ وَلَا يَـُٔوْدُهٗ حِفْظُهُمَاۚ وَهُوَ الْعَلِيُّ الْعَظِيْمُ'
 
-let arab;
-let temp = new Set()	// menyimpan karakter-karakter yang belum terproses.
+// -----------END OF HTML SCRIPTS-----------
+// -----------BEGINNING OF CONVERTER SCRIPTS-----------
+// define a variable to store the result
+let arab
+
+// create an object  to store all arab characters and its conversion values.
 const arToBraille = {
-	'\u0627' : '\u2801', /*alif*/ '\u0628' : '\u2803', /*b*/ '\u062a' : '\u281e', /*t*/ '\u062b' : '\u2839', /*ts rhingan*/ '\u062c' : '\u281a', /*j*/ '\u062d' : '\u2831', /*kh ringan*/ '\u062e' : '\u282d', /*kho*/ '\u062f' : '\u2819', '\u0630' : '\u2836', /*ż*/ '\u0631' : '\u2817', /*r*/ '\u0632' : '\u2835', /*z*/ '\u0633' : '\u280e', /*s*/
-	'\u0634' : '\u2829', /*sy*/ '\u0635' : '\u282F', /*shod*/ '\u0636' : '\u282B', /*dhod*/ '\u0637' : '\u283E', /*thot*/ '\u0638' : '\u283F', /*dhod*/ '\u0639' : "\u2837", /*‘ain*/ '\u063a' : '\u2823', /*gh*/
-	'\u0641' : '\u280b', '\u0642' : '\u281f', /*q*/ '\u0643' : '\u2805', /*k*/ '\u0644' : '\u2807', /*l*/ '\u0645' : '\u280d', /*m*/ '\u0646' : '\u281d', /*n*/ '\u0647' : '\u2813', /*h*/ '\u0648' : '\u283a', /*w*/ '\u064a' : '\u280a', /*y*/
-	'\u0623' : '', /*أ*/ '\u0626' : '\u283D', /*ئ*/ '\u0624' : '\u2833', /*ؤ*/ 
-	// '\u0625' : '\u2804\u2811', /*إ, jadi hamzah ketemu kasrah (harus di tes: kata 'islam)*/ 
-	'\u0621' : '\u2804', /*hamzah berdiri sendiri ء*/
-	'\u0629' : '\u2821',	// ta marbuttah
-	'\u0649' : '\u2815', // alif maksura, baca panjang
-	'\u0670' : '\u2808',	// tanda alif kecil di atas.
-
-	'\u064E' : '\u2802', //fathah
-	'\u064F' : '\u2825',	//dhommah
-	'\u0650' : '\u2811', // kasrah
-	'\u0657' : '\u282C', // dhommah terbalik ٗ
-	// '\u0656' : '', // kasrah tegak
-	'\u064b' : '\u2806', // fathatain
-	'\u064d' : '\u2814', // kasratain
-	'\u064c' : '\u2822', // dhommatain
-	'\u0653' : '\u282a', // ٓ, bendera tanda harakat panjang.
-	'\u0652' : '\u2812',	// sukun 
+  huruf: {
+    '\u0627': '\u2801', /*alif */ '\u0628': '\u2803', /*b */ '\u062a': '\u281e', /*t */ '\u062b': '\u2839', /*ts rhingan */ '\u062c': '\u281a', /*j */ '\u062d': '\u2831', /*kh ringan */ '\u062e': '\u282d', /*kho */ '\u062f': '\u2819', '\u0630': '\u282e', /*ż */ '\u0631': '\u2817', /*r */ '\u0632': '\u2835', /*z */ '\u0633': '\u280e', /*s */
+    '\u0634': '\u2829', /*sy */ '\u0635': '\u282F', /*shod */ '\u0636': '\u282B', /*dhod */ '\u0637': '\u283E', /*thot */ '\u0638': '\u283F', /*dhod */ '\u0639': '\u2837', /*‘ain */ '\u063a': '\u2823', /*gh */
+    '\u0641': '\u280b', '\u0642': '\u281f', /*q */ '\u0643': '\u2805', /*k */ '\u0644': '\u2807', /*l */ '\u0645': '\u280d', /*m */ '\u0646': '\u281d', /*n */ '\u0647': '\u2813', /*h */ '\u0648': '\u283a', /*w */ '\u064a': '\u280a', /*y */
+    '\u0623': '\u280c', /*أ hamzah atas alif */ '\u0626': '\u283D', /*ئ */ '\u0624': '\u2833', /*ؤ */
+    '\u0625': '\u280c', /*إ, hamzah bawah alif */
+    '\u0621': '\u2804', /*hamzah berdiri sendiri ء */
+    '\u0629': '\u2821',	// ta marbuttah
+    '\u0671': '\u0671',	// ٱ alif wasal jadi alif biasa
+    '\u0649': '\u2815', // alif maksura, baca panjang
+    'lamAlif': '\u2827' // lam alif ⠧
+    // '\u0654' : '', // hamzah ngambang ٔ
+  },
+  tandaHidup: {
+    '\u0670': '\u2808',	// tanda alif kecil di atas.
+    '\u064E': '\u2802', // fathah
+    '\u064F': '\u2825',	// dhommah
+    '\u0650': '\u2811', // kasrah
+    '\u0657': '\u282C', // dhommah terbalinda ٖ
+    '\u0656': '\u2818', // kasrah tegak
+    '\u064b': '\u2806', // fathatain
+    '\u064d': '\u2814', // kasratain
+    '\u064c': '\u2822', // dhommatain
+    '\u0653': '\u282a', // ٓ, bendera tanda harakat panjang.
+    '\u06e4': '\u282a', // sama seperti bendera panjang
+    '\u06e6': '\u2818' // sma seperti kasrah tegak
+  },
+  tandaMati: {
+    '\u0652': '\u2812',	// sukun
+    'tasydid': '\u2820',	// Tidak diganti untuk mengindari tympang tindih penggantian tasydid.
+    '\u06e1': '\u2812' // sukun utsmani
+  },
+  charsTanpaBraille: {	// menampung simbol arab yang tidak ada simbol braille nya.
+    // '\u0640' : '', // tanda tatwil: tanda hubung untuk memanjangkan jarak antar lafadz
+    '\u06ec': 'k', // biasa muncul setelah tanwin.
+    // ' \u06e5' : 'u\u282c', // sama seperti dhommah terbalik.
+    '\u200c': '' // space sebelum waqaf
+  },
+  get semuaHuruf() {
+    let str = '(['
+    for (const key in this.huruf) {
+      str += this.huruf[key]
+    }
+    str += '])'
+    return str
+  },
+  get semuaTandaBaca() {
+    let str = '(['
+    for (const key in this.tandaHidup) {
+      str += this.tandaHidup[key]
+    }
+    for (const key in this.tandaMati) {
+      str += this.tandaMati[key]
+    }
+    str += '])'
+    return str
+  },
+  get semuaTandaHidup() {
+    let str = '(['
+    for (const key in this.tandaHidup) {
+      str += this.tandaHidup[key]
+    }
+    str += '])'
+    return str
+  },
+  get semuaTandaMati() {
+    let str = '(['
+    for (const key in this.tandaMati) {
+      str += this.tandaMati[key]
+    }
+    str += '])'
+    return str
+  }
 }
 
-const specialChars = {	// karakter-karakter yag perlu perlakuan khusus.
-	'\u2827' : '', // lamAlif
-	
-	
+// set all get methods to be non-enumerable to avoid them from being looped in convert.roughConvertion() function
+Object.defineProperties(arToBraille, {
+  semuaHuruf: { enumerable: false },
+  semuaTandaBaca: { enumerable: false },
+  semuaTandaHidup: { enumerable: false },
+  semuaTandaMati: { enumerable: false }
+})
 
-	'\u0651' : '\u2820',	// tasydid  
-	
-	
+// create a static class to store all convert functions
+class convert {
+  static convertFunction() {
+    for (const item of this.regExpCombination) {
+      console.log(this.methodName + ' found: ' + arab.match(item.regex))
+      arab = arab.replace(item.regex, item.replacer)
+    }
+  }
+
+  static roughConvertion() {
+    let allChars = ''
+    for (const props in arToBraille) {
+      // concat all keys and separate them by '|'
+      allChars += Object.keys(arToBraille[props]).join('|')
+      allChars += '|'
+    }
+    // remove the last '|' character.
+    allChars = allChars.slice(0, -1)
+    // add unregistered chars into temp for debugging purpose
+    const temp = new Set()
+    arab.match(new RegExp('[^' + allChars + ']', 'g')).map((item) => temp.add(item))
+
+    // begin the rough convertion
+    arab = arab.replace(new RegExp(allChars, 'g'), function(matched) {
+      for (const props in arToBraille) {
+        if (arToBraille[props][matched] !== undefined) {
+          return arToBraille[props][matched]
+        } else {
+          continue
+        }
+      }
+    })
+    console.log('Unprocessed chars: ', temp)
+  }
+
+  static tasydid() {
+    this.methodName = 'tasydid'
+    this.regExpCombination = [
+      {
+        regex: new RegExp(arToBraille.semuaHuruf + '\u0651' + arToBraille.semuaTandaHidup, 'g'),
+        replacer: '\u2820$1$2'
+      },
+      {
+        regex: new RegExp(arToBraille.semuaHuruf + '\u2811\u0651', 'g'),
+        replacer: '\u2820$1\u2811'
+      }	// ini untuk bentuk kasrah yang dibawah tasydid
+    ]
+    this.convertFunction()
+  }
+
+  static lamAlif() {
+    // di run setelah tasydid()
+    this.methodName = 'lamAlif'
+    this.regExpCombination = [
+      {
+        // lam + fathah (optional) + alif/hamzah alal alif + bendera(optional)
+        regex: new RegExp('\u2807\u2802\u2801(\u282a)?', 'g'),
+        // menjadi: lamAlif + tanda bendera (kalo ada)
+        replacer: '\u2827$1'
+      }
+    ]
+    this.convertFunction()
+  }
+
+  static mad() {
+    // run setelah checkWassal
+    this.methodName = 'mad'
+    this.regExpCombination = [
+      {
+        // jika fathah ketemu alif
+        // huruf m  pada replacer dipakai sebagai marker untuk memudahkan proses debugging.
+        regex: new RegExp('\u2802\u2801', 'g'),
+        replacer: 'm\u2801'
+      },
+      {
+        // jika kasrah ketemu alif maksuro
+        regex: new RegExp('\u2811\u2815', 'g'),
+        replacer: 'm\u2815'
+      },
+      {
+        // dhommah + waw + sukun(optional) + spasi(optional) + huruf minimal 1
+        regex: new RegExp('\u2825\u283a\u2812?( )?' + arToBraille.semuaHuruf + '+', 'g'),
+        replacer: 'm\u283a$1$2'
+      },
+      {
+        // kasrah + ya + sukun(optional) + spasi(optional) + huruf minimal 1
+        regex: new RegExp('\u2811\u280a\u2812?( )?' + arToBraille.semuaHuruf + '+', 'g'),
+        replacer: 'm\u280a$1$2'
+      }
+    ]
+    this.convertFunction()
+  }
+
+  static checkWassal() {
+    // run setelah lamAlif()
+    // untuk mendeteksi wassal pada quran Kemenag.
+    this.methodName = 'check Wassal'
+    this.regExpCombination = [
+      {
+        // alif + tanda? + huruf? + tandaMati
+        regex: new RegExp('\u2801' + arToBraille.semuaTandaHidup + '?' + arToBraille.semuaHuruf + '?' + arToBraille.semuaTandaMati, 'g'),
+        replacer: '\u0671$1$2$3'
+      },
+      {
+        // ini untuk mengubah alif wassal yang bertanda menjadi hamzah alal alif
+        //  alif/wassal + tanda hidup + huruf + tanda mati
+        regex: new RegExp('[\u0671\u2801]' + arToBraille.semuaTandaHidup + arToBraille.semuaHuruf + arToBraille.semuaTandaMati, 'g'),
+        replacer: '\u280ch$1$2$3'
+      },
+      {
+        // mengubah wassal/hamzah alal alif yang bertemu tanda bendera menjadi alif mad
+        regex: new RegExp('[\u280c\u0671]\u282a', 'g'),
+        replacer: '\u2801\u282a'
+      }
+    ]
+    this.convertFunction()
+  }
+
+  static utsmaniSymbols() {
+    // run sebelum tasydid
+    this.methodName = 'utsmani symbols'
+    this.regExpCombination = [
+      {
+        regex: new RegExp(arToBraille.semuaTandaHidup + '\u0640' + arToBraille.semuaTandaHidup, 'g'),
+        replacer: '$2'
+      },
+      {
+        // kasrah + symbol kasrah tegak.
+        regex: new RegExp('\u2811\u2818', 'g'),
+        replacer: '\u2818'
+      },
+      {
+        // tanda hidup + tanda hubung + bukan tanda hidup
+        regex: new RegExp(arToBraille.semuaTandaHidup + '\u0640([^' + arToBraille.semuaTandaHidup.substring(2, arToBraille.semuaTandaHidup.length), 'g'),
+        replacer: '$1$2'
+      },
+      {
+        regex: new RegExp('\u2825 \u06e5', 'g'),
+        replacer: 'u\u282c'
+      },
+      {
+        regex: new RegExp('\u2802\u0672', 'g'),
+        replacer: 'a\u2808'
+      }
+    ]
+    this.convertFunction()
+  }
+
+  static newLineToBreak() {
+    // biar line space di inputan textarea ngikut
+    arab = arab.replace(/ ?[\n] ?/g, '<br />')
+  }
+
+  static runIt() {
+    // store textInput into arab variable
+    arab = textInput.value
+    // run all methods in sequence
+    convert.newLineToBreak()
+    convert.roughConvertion()
+    convert.utsmaniSymbols()
+    convert.tasydid()
+    convert.lamAlif()
+    convert.checkWassal()
+    convert.mad()
+    arab = arab.replace(/\u0671/g, '\u2801')
+
+    // show the result inside brailleOutput div
+    brailleOutput.innerHTML = arab
+  }
 }
 
+// set convertButton click event.
+convertButton.onclick = convert.runIt
 
-
-function arToB() {
-	for (let ch of arab) {
-		arab = arab.replace(new RegExp(ch), function () {
-			if (typeof(arToBraille[ch]) === 'undefined') {
-				temp = temp.add(ch)
-				return ch
-			} else {
-				return arToBraille[ch]
-			}
-		})
-	}
-}
-
-function tasydid() {
-	
-	let regExpCombination = {
-		'([^\u2811])\u0651([^ ])' : '\u2820$1$2',	// bukanKasrah + tasydid + hurufApapun
-		'([^ ])\u2811\u0651' : '\u2820$1\u2811',	// hurufApapun + kasrah + tasydid
-	}
-	for (let key in regExpCombination) {
-		arab = arab.replace(new RegExp(key, 'g'), regExpCombination[key])
-	}
-	temp.delete('\u0651')
-	return arab
-}
-
-function mad() {
-	let regExpCombination = {
-		'\u2802\u2801' : '\u2801', // fatha ketemu alif
-		'\u2802\u2815' : '\u2815', // fathah ketemu alif matsuro
-		'\u2811\u280a\u2812' : '\u280a',	// kasrah ketemu ya ketemu sukun 
-		'\u2825\u283a\u2812' : '\u283a',	// dommah ketemu waw ketemu sukun 
-	}
-	for (let key in regExpCombination) {
-		arab = arab.replace(new RegExp(key, 'g'), regExpCombination[key])
-	}
-	return arab;
-}
-
-function lamAlif() {
-	arab = arab.replace(/\u2807\u2820?\u2802?\u2801([^ ])? /g, '\u2827$1')
-	return arab;
-}
-function newLineToBreak() {	// biar line space di inputan textarea ngikut
-	arab = arab.replace(/ ?[\n] ?/g, '<br />')
-}
-
-function runIt() {
-	arab = $('#arab').val()
-	newLineToBreak()
-	arToB()
-	tasydid()
-	mad()
-	lamAlif()
-	$('#braille').html(arab)
-}
-
-
+// tambah removeMarkers()
