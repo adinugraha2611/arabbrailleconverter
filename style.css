@@ -6,7 +6,7 @@ body {
   width: 100%;
 }
 header {
-  font-size: 36px;
+  font-size: 15vmin;
   margin: 10px;
 }
 main {
@@ -23,7 +23,8 @@ label {
 }
 input[type="button"] {
   display: inline-block;
-  margin: 20px auto;
+  margin: 15px auto;
+  height: 15vmin;
 }
 #braille {
   border: 1px solid lightblue;
