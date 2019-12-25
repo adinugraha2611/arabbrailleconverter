@@ -7,7 +7,7 @@ body {
 }
 header {
   max-height: 15vmin;
-  margin: 10px;
+  margin-bottom: 20px;
 }
 .button {
   text-align: center;
@@ -20,16 +20,17 @@ label {
   height: 20vh;
   width: 100%;
   max-width: 100%;
+  text-align: right;
 }
 input[type="button"] {
   display: inline-block;
   margin: 15px auto;
-  padding: 10px 20px;
+  padding: 5px 20px;
   height: 10vmin;
 }
 #braille {
   border: 1px solid lightblue;
-  height: 20vh;
+  height: 30vh;
   max-width: 100%;
   margin: 20px 10px;
 }
