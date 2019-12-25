@@ -9,9 +9,6 @@ header {
   max-height: 20vmin;
   margin: 10px;
 }
-main {
-  text-align: center;
-}
 label {
   display: inline-block;
   margin: 10px auto;
@@ -20,22 +17,17 @@ label {
   height: 30vh;
   width: 100%;
   max-width: 100%;
-  text-align: left;
 }
 input[type="button"] {
   display: inline-block;
   margin: 15px auto;
-  padding: 10px;
+  padding: 10px 20px;
   height: 10vmin;
+  text-align: center;
 }
 #braille {
   border: 1px solid lightblue;
-  height: 30vh;
+  height: 20vh;
   max-width: 100%;
   margin: 20px 10px;
-}
-article {
-  margin: auto;
-  text-align: left;
-  max-width: 100%;
 }
