@@ -8,30 +8,47 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<header><h1>Prototype Konverter Arab Braille Indonesia</h1></header>
-	<main>
-		<div>
-			<label for="arab">Masukkan teks Arab pada kolom di bawah ini:</label>
-			<textarea id="text-input" rows="7" cols="200" tabindex="1"></textarea>
-		</div>
-		<div class="button">
-			<input id="convert-button" type="button" tabindex="2" value="Convert!">
-		</div>
-		<div id="braille"  width="90%" tabindex="3">Tekan tombol Convert untuk mengkonversi</div>
-
-		<article>
-				<p>konverter Arab Braille Indonesia ini adalah model awal dari proyek personal yang diharapkan bisaterus dikmbangkan dan diaplikasikan untuk tujuan dan fungsi yang lebih besar. Hasil konversi tulisan arab telah mengikuti beberapa ketentuan yang lazim ditemukan pada penulisan Al-Quran Braille di Indonesia, diantaranya:<br>
+	<div id="container">
+		<header><h1>Prototype Konverter Arab Braille Indonesia</h1></header>
+		<main>
+			<div>
+				<label for="arab">Masukkan teks Arab pada kolom di bawah ini:</label>
+				<textarea id="text-input" rows="7" cols="200" tabindex="1"></textarea>
+			</div>
+			<div class="button">
+				<input id="convert-button" type="button" tabindex="2" value="Convert!">
+			</div>
+			<div id="braille"  width="90%" tabindex="3">Tekan tombol Convert untuk mengkonversi</div>
+	
+			<article>
+				<p>
+					<strong>Fitur: </strong>
 					<ul>
-						<li>huruf Lam Alif seperti لَا akan menjadi ⠧</li>
-						<li>Huruf hidup bertemu huruf mad dan sukun akan ditulis tanpa harakan dan sukun.<br>
-							Contoh: حِيْ  akan menjadi ⠱⠊ 
-						</li>
-						<li>dan lain-lain.</li>
-					</ul><br>
-					Tentunya, proyek ini jauh dari sempurna. Masih ada sejumlah karakter yang belum terdata dan mungkin masih akan ditemui beberapa penulisan yang tidak sesuai kaidah yang benar. Namun, jika dinilai potensial, proyek ini akan terus dikembangkan.
-			</p>
-		</article>
-	</main>
+						<li>Support text Quran dengan script Utsmani dan standarKemenag.</li>
+						<li>Penulisan bentuk mad mengikuti ketentuan penulisan Braille  di Indonesia.</li>
+						<li>Deteksi huruf alif wassal pada Quran Kemenag untuk menghindari kesalahan penulisan bentuk mad.</li>
+						<li>Untuk Quran standar Kemenag, huruf alif yang diberi tanda harakat akan diubah menjadi Hamzah 'alal alif dengan harakat, mengikuti aturan baku tulisan arab. </li>
+					</ul>
+				</p>
+				<p>
+					<strong>Catatan: </strong>
+					<ul>
+						<li>Belum support tanda Waqaf.</li>
+						<li>Masih terdapat beberapa simbol yang belum terdata.</li>
+						<li>Simbol yang tidak terdata akan ditampilkan sebagaimana bentuk aslinya.</li>
+						<li>Jika dinilai potensial, proyek ini akan terus dikembangkan, baik dalam bentuk website, atau bentuk program lainnya.</li>
+					</ul>
+				</p>
+			</article>
+		</main>
+		<footer>
+			The scripts are written using pure Javascript, HTML, and CSS without any dependencies or frameworks.
+			Created by Adinugraha, 
+			a blind developer who's always eager to learn and earn.
+			Email: m.adinugraha.ug@gmail.com
+			Jakarta, Indonesia.
+		</footer>
+	</div>
 </body>
 <script src="arToBraille.js"></script>
 </html>

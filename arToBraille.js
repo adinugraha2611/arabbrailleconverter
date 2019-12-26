@@ -5,7 +5,7 @@ const textInput = document.getElementById('text-input')
 const convertButton = document.getElementById('convert-button')
 const brailleOutput = document.getElementById('braille')
 // set default textInput value
-textInput.value = 'بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ\n\nاَللّٰهُ لَآ اِلٰهَ اِلَّا هُوَۚ اَلْحَيُّ الْقَيُّوْمُ ەۚ لَا تَأْخُذُهٗ سِنَةٌ وَّلَا نَوْمٌۗ لَهٗ مَا فِى السَّمٰوٰتِ وَمَا فِى الْاَرْضِۗ مَنْ ذَا الَّذِيْ يَشْفَعُ عِنْدَهٗٓ اِلَّا بِاِذْنِهٖۗ يَعْلَمُ مَا بَيْنَ اَيْدِيْهِمْ وَمَا خَلْفَهُمْۚ وَلَا يُحِيْطُوْنَ بِشَيْءٍ مِّنْ عِلْمِهٖٓ اِلَّا بِمَا شَاۤءَۚ وَسِعَ كُرْسِيُّهُ السَّمٰوٰتِ وَالْاَرْضَۚ وَلَا يَـُٔوْدُهٗ حِفْظُهُمَاۚ وَهُوَ الْعَلِيُّ الْعَظِيْمُ'
+textInput.value = 'ٱللَّهُ لَآ إِلَـٰهَ إِلَّا هُوَ ٱلۡحَىُّ ٱلۡقَيُّومُ‌ۚ لَا تَأۡخُذُهُ ۥ سِنَةٌ۬ وَلَا نَوۡمٌ۬‌ۚ لَّهُ ۥ مَا فِى ٱلسَّمَـٰوَٲتِ وَمَا فِى ٱلۡأَرۡضِ‌ۗ مَن ذَا ٱلَّذِى يَشۡفَعُ عِندَهُ ۥۤ إِلَّا بِإِذۡنِهِۦ‌ۚ يَعۡلَمُ مَا بَيۡنَ أَيۡدِيهِمۡ وَمَا خَلۡفَهُمۡ‌ۖ وَلَا يُحِيطُونَ بِشَىۡءٍ۬ مِّنۡ عِلۡمِهِۦۤ إِلَّا بِمَا شَآءَ‌ۚ وَسِعَ كُرۡسِيُّهُ ٱلسَّمَـٰوَٲتِ وَٱلۡأَرۡضَ‌ۖ وَلَا يَـُٔودُهُ ۥ حِفۡظُهُمَا‌ۚ وَهُوَ ٱلۡعَلِىُّ ٱلۡعَظِيمُ'
 
 // -----------END OF HTML SCRIPTS-----------
 // -----------BEGINNING OF CONVERTER SCRIPTS-----------
@@ -24,8 +24,8 @@ const arToBraille = {
     '\u0629': '\u2821',	// ta marbuttah
     '\u0671': '\u0671',	// ٱ alif wasal jadi alif biasa
     '\u0649': '\u2815', // alif maksura, baca panjang
-    'lamAlif': '\u2827' // lam alif ⠧
-    // '\u0654' : '', // hamzah ngambang ٔ
+    'lamAlif': '\u2827', // lam alif ⠧
+    '\u0654' : '\u2804', // hamzah ngambang ٔ
   },
   tandaHidup: {
     '\u0670': '\u2808',	// tanda alif kecil di atas.
@@ -43,12 +43,12 @@ const arToBraille = {
   },
   tandaMati: {
     '\u0652': '\u2812',	// sukun
-    'tasydid': '\u2820',	// Tidak diganti untuk mengindari tympang tindih penggantian tasydid.
+    '\u0651': '\u0651',	// tasydid. Tidak diganti untuk mengindari tympang tindih penggantian tasydid.
     '\u06e1': '\u2812' // sukun utsmani
   },
   charsTanpaBraille: {	// menampung simbol arab yang tidak ada simbol braille nya.
     // '\u0640' : '', // tanda tatwil: tanda hubung untuk memanjangkan jarak antar lafadz
-    '\u06ec': 'k', // biasa muncul setelah tanwin.
+    '\u06ec': '', // biasa muncul setelah tanwin.
     // ' \u06e5' : 'u\u282c', // sama seperti dhommah terbalik.
     '\u200c': '' // space sebelum waqaf
   },
@@ -167,25 +167,26 @@ class convert {
     this.regExpCombination = [
       {
         // jika fathah ketemu alif
-        // huruf m  pada replacer dipakai sebagai marker untuk memudahkan proses debugging.
+        // tanda %m  pada replacer dipakai sebagai marker untuk memudahkan proses debugging.
         regex: new RegExp('\u2802\u2801', 'g'),
-        replacer: 'm\u2801'
+        replacer: '%m\u2801'
       },
       {
         // jika kasrah ketemu alif maksuro
         regex: new RegExp('\u2811\u2815', 'g'),
-        replacer: 'm\u2815'
+        replacer: '%m\u2815'
       },
       {
         // dhommah + waw + sukun(optional) + spasi(optional) + huruf minimal 1
         regex: new RegExp('\u2825\u283a\u2812?( )?' + arToBraille.semuaHuruf + '+', 'g'),
-        replacer: 'm\u283a$1$2'
+        replacer: '%m\u283a$1$2'
       },
       {
         // kasrah + ya + sukun(optional) + spasi(optional) + huruf minimal 1
         regex: new RegExp('\u2811\u280a\u2812?( )?' + arToBraille.semuaHuruf + '+', 'g'),
-        replacer: 'm\u280a$1$2'
-      }
+        replacer: '%m\u280a$1$2'
+      },
+      
     ]
     this.convertFunction()
   }
@@ -202,9 +203,10 @@ class convert {
       },
       {
         // ini untuk mengubah alif wassal yang bertanda menjadi hamzah alal alif
+        // tanda %h pada replacer hanya untuk mempermudah proses debugging.
         //  alif/wassal + tanda hidup + huruf + tanda mati
         regex: new RegExp('[\u0671\u2801]' + arToBraille.semuaTandaHidup + arToBraille.semuaHuruf + arToBraille.semuaTandaMati, 'g'),
-        replacer: '\u280ch$1$2$3'
+        replacer: '\u280c%h$1$2$3'
       },
       {
         // mengubah wassal/hamzah alal alif yang bertemu tanda bendera menjadi alif mad
@@ -235,16 +237,34 @@ class convert {
       },
       {
         regex: new RegExp('\u2825 \u06e5', 'g'),
-        replacer: 'u\u282c'
+        replacer: '%u\u282c'
       },
       {
         regex: new RegExp('\u2802\u0672', 'g'),
-        replacer: 'a\u2808'
+        replacer: '%u\u2808'
+      },
+      {
+        // ini untuk merubah alif maksuro yang dipakai seperti huruf 'ya' pada script Utsmani.
+        // bukan kasrah + alif maksuro + tanda mati
+        regex : new RegExp('([^\u2811])\u2815' + arToBraille.semuaTandaMati, 'g'),
+        replacer : '$1%y\u280a$2'
+      },
+      {
+        // masih sama seperti yang diatas.
+        // kasrah + alif maksuro + tasydid
+        regex : new RegExp('\u2811\u2815\u0651', 'g'),
+        replacer : '%y\u2811\u280a\u0651',
       }
     ]
     this.convertFunction()
   }
 
+  static removeMarkers() {
+    // run paling akhir
+    arab = arab.replace(/%\w/g, '')
+    arab = arab.replace(/\u0671/g, '\u2801')
+  }
+  
   static newLineToBreak() {
     // biar line space di inputan textarea ngikut
     arab = arab.replace(/ ?[\n] ?/g, '<br />')
@@ -261,7 +281,7 @@ class convert {
     convert.lamAlif()
     convert.checkWassal()
     convert.mad()
-    arab = arab.replace(/\u0671/g, '\u2801')
+    convert.removeMarkers()
 
     // show the result inside brailleOutput div
     brailleOutput.innerHTML = arab
