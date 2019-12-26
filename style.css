@@ -10,11 +10,12 @@ html, body {
   position: relative;
 }
 header h1 {
-  font-size: 10vmin;
+  font-size: 16px;;
   margin: 0px 0px 20px 0px;
 }
 main {
   padding-bottom: 65px;
+  font-size: 15px;;
 }
 label {
   display: block;
@@ -45,6 +46,7 @@ input[type="button"] {
 }
 footer {
   height: 70px;
+  line-height: 13px;
   position: absolute;
   bottom: 0px;
   width: 100%;
