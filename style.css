@@ -4,13 +4,13 @@ body {
     sans-serif;
   width: 100%;
 }
-header {
-  font-size: 26px;
+h1 {
+  font-size: 15vmin;
   margin: 0px 0px 20px 0px;
 }
 
 label {
-  display: inline-block;
+  display: block;
   margin: 10px auto;
   padding: 10px;
 }
@@ -21,12 +21,12 @@ label {
   overflow-y: auto;
 }
 input[type="button"] {
-  display: inline-block;
+  display: block;
   margin: 15px auto;
   padding: 5px 20px;
   height: 10vmin;
-  background-color: aliceblue;
-  color: white000;
+  background-color: lightblue;
+  font: 6vmin bold white;
 }
 #braille {
   border: 1px solid lightblue;
