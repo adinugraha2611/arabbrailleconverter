@@ -45,12 +45,11 @@ input[type="button"] {
 }
 footer {
   height: 70px;
-  line-height: 70px;
   position: absolute;
   bottom: 0px;
-  margin-bottom: 0px;
   width: 100%;
   background-color: skyblue;
   color: white;
   font-weight: lighter;
+  font-size: 12px;
 }
