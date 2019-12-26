@@ -45,6 +45,7 @@ input[type="button"] {
 }
 footer {
   height: 70px;
+  line-height: 70px;
   position: absolute;
   bottom: 0px;
   margin-bottom: 0px;
