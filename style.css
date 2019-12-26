@@ -47,7 +47,6 @@ footer {
   bottom: 0px;
   width: 100%;
   background-color: skyblue;
-  font-size: 10px;
-  color: white;
-  padding: auto; ;
+  font: 10px lighter white;
+  padding: 0 auto auto 20px;
 }
