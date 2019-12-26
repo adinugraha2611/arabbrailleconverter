@@ -5,7 +5,7 @@ body {
   width: 100%;
 }
 h1 {
-  font-size: 15vmin;
+  font-size: 14px;
   margin: 0px 0px 20px 0px;
 }
 
@@ -13,6 +13,7 @@ label {
   display: block;
   margin: 10px auto;
   padding: 10px;
+  font-size: 12px;
 }
 #text-input {
   height: 20vh;
@@ -25,8 +26,8 @@ input[type="button"] {
   margin: 15px auto;
   padding: 5px 20px;
   height: 10vmin;
-  background-color: lightblue;
-  font: 6vmin bold white;
+  background-color: blue;
+  color: white;
 }
 #braille {
   border: 1px solid lightblue;
