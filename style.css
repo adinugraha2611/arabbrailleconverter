@@ -10,7 +10,7 @@ html, body {
   position: relative;
 }
 header h1 {
-  font-size: 16px;;
+  font-size: 10vmin;
   margin: 0px 0px 20px 0px;
 }
 main {
@@ -46,7 +46,7 @@ input[type="button"] {
 }
 footer {
   height: 70px;
-  line-height: 13px;
+  line-height: 14px;
   position: absolute;
   bottom: 0px;
   width: 100%;
