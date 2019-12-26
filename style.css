@@ -28,7 +28,7 @@ label {
   height: 20vh;
   max-width: 100%;
   text-align: right;
-  font-size: 16px;
+  font-size: 22px;
   overflow-y: auto;
 }
 input[type="button"] {
@@ -44,12 +44,11 @@ input[type="button"] {
   height: 20vh;
   max-width: 100%;
   margin: 20px 10px;
-  font-size: 18px;
+  font-size: 22px;
   overflow-y: auto;
 }
 article {
-  padding-left: 30px;
-  font-weight: lighter;
+  padding-left: 25px;
 }
 footer {
   height: 50px;
