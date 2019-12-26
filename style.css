@@ -9,6 +9,7 @@ body {
   position: relative;
 }
 header {
+  font-size: 10vmin;
   margin: 0px 0px 20px 0px;
 }
 main {
@@ -45,8 +46,8 @@ footer {
   height: 70px;
   position: absolute;
   bottom: 0px;
+  margin-bottom: 0px;
   width: 100%;
   background-color: skyblue;
   font: 10px lighter white;
-  padding: 0 auto auto 20px;
 }
