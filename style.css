@@ -10,11 +10,6 @@ html, body {
   min-height: 100vh;
   position: relative;
 }
-header h1 {
-  font-size: 22px;
-  margin: 20px auto;
-  padding-left: 10px;
-}
 main {
   padding-bottom: 21vmin;
   font-size: 15px;
