@@ -57,8 +57,8 @@ footer {
   line-height: 7vmin;
   position: absolute;
   bottom: 0px;
+  left: 0px;
   width: 100vw;
-  padding-left: 0;
   background-color: skyblue;
   color: white;
   font-size: 5vmin;
