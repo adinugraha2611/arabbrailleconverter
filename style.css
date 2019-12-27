@@ -13,7 +13,7 @@ html, body {
 header h1 {
   font-size: 22px;
   margin: 20px auto;
-  padding: auto;
+  padding: 7vmin;
 }
 main {
   padding-bottom: 21vmin;
