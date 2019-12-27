@@ -9,10 +9,10 @@ html, body {
 #container {
   min-height: 100vh;
   position: relative;
-  padding-left: 10vmin;
+  padding-left: 8vmin;
 }
 header h1 {
-  font-size: 18px;
+  font-size: 22px;
   margin: 0px 0px 20px 0px;
 }
 main {
@@ -58,6 +58,7 @@ footer {
   position: absolute;
   bottom: 0px;
   width: 100vw;
+  padding-left: 0;
   background-color: skyblue;
   color: white;
   font-size: 5vmin;
