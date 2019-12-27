@@ -15,7 +15,7 @@ header h1 {
   margin: 0px 0px 20px 0px;
 }
 main {
-  padding-bottom: 50px;
+  padding-bottom: 21vmin;
   font-size: 15px;
 }
 label {
@@ -52,12 +52,12 @@ article {
   padding-left: 25px;
 }
 footer {
-  height: 50px;
-  line-height: 16px;
+  height: 21vmin;
+  line-height: 7vmin;
   position: absolute;
   bottom: 0px;
   width: 100%;
   background-color: skyblue;
   color: white;
-  font-size: 12px;
+  font-size: 5vmin;
 }
