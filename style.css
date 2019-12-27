@@ -9,7 +9,7 @@ html, body {
 #container {
   min-height: 100vh;
   position: relative;
-  padding-left: 5vmin;
+  padding-left: 15vmin;
 }
 header h1 {
   font-size: 18px;
