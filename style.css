@@ -13,7 +13,7 @@ html, body {
 }
 header h1 {
   font-size: 22px;
-  margin: 0px 0px 20px 0px;
+  margin: 20px auto;
 }
 main {
   padding-bottom: 21vmin;
@@ -36,7 +36,7 @@ label {
 input[type="button"] {
   display: block;
   margin: 15px auto;
-  padding: 5px 20px;
+  padding: 5px 10vmin;
   height: 10vmin;
   background-color: skyblue;
   color: white;
