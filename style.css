@@ -13,7 +13,7 @@ html, body {
 header h1 {
   font-size: 22px;
   margin: 20px auto;
-  padding: 7vmin;
+  padding-left: 10vmin;
 }
 main {
   padding-bottom: 21vmin;
@@ -59,10 +59,10 @@ footer {
   line-height: 7vmin;
   position: absolute;
   bottom: 0px;
-  padding-right: 10vmin;
+  padding-right: 7vmin;
   width: 100vw;
   background-color: skyblue;
   color: white;
-  font-size: 5vmin;
+  font-size: 4vmin;
   text-align: right;
 }
