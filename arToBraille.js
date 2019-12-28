@@ -26,6 +26,7 @@ const arToBraille = {
     '\u0649': '\u2815', // alif maksura, baca panjang
     'lamAlif': '\u2827', // lam alif ⠧
     '\u0654' : '\u2804', // hamzah ngambang ٔ
+    '\u06c1' : '\u2813', // H utsmani
   },
   tandaHidup: {
     '\u0670': '\u2808',	// tanda alif kecil di atas.
@@ -222,7 +223,8 @@ class convert {
     this.methodName = 'utsmani symbols'
     this.regExpCombination = [
       {
-        regex: new RegExp(arToBraille.semuaTandaHidup + '\u0640' + arToBraille.semuaTandaHidup, 'g'),
+        // tanda harakat + tanda hubung + tanda harakat (biasanya tanda harakat panjang)
+        regex: new RegExp(arToBraille.semuaTandaHidup + '[\u0640\u066e]' + arToBraille.semuaTandaHidup, 'g'),
         replacer: '$2'
       },
       {
@@ -231,7 +233,7 @@ class convert {
         replacer: '\u2818'
       },
       {
-        // tanda hidup + tanda hubung + bukan tanda hidup
+        // tanda hidup + tanda hubung + bukan tanda hidup (huruf)
         regex: new RegExp(arToBraille.semuaTandaHidup + '\u0640([^' + arToBraille.semuaTandaHidup.substring(2, arToBraille.semuaTandaHidup.length), 'g'),
         replacer: '$1$2'
       },
