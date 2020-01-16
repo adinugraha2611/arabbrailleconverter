@@ -27,7 +27,6 @@ const arToBraille = {
     'lamAlif': '\u2827', // lam alif ⠧
     '\u0654' : '\u2804', // hamzah ngambang ٔ
     '\u06c1' : '\u2813', // H utsmani
-    'hamzahMad' : '\u281c', // ⠜ 
   },
   tandaHidup: {
     '\u0670': '\u2808',	// tanda alif kecil di atas.
@@ -116,16 +115,13 @@ class convert {
       allChars += '|'
     }
     // remove the last '|' character.
+    arab.match(new RegExp('[^' + allChars + ']', 'g')).map(element => {
+      
+    });(item => (item !== null) ? temp.add(item) : 'none')
     allChars = allChars.slice(0, -1)
     // add unregistered chars into temp for debugging purpose
     let temp = new Set()
-    const tempChars = arab.match(new RegExp('[^' + allChars + ']', 'g'))
-    if (tempChars) {
-      for (let char of tempChars) {
-        temp.add(char)
-      }
-    } 
-    
+
     // begin the rough convertion
     arab = arab.replace(new RegExp(allChars, 'g'), function(matched) {
       for (const props in arToBraille) {
@@ -159,16 +155,15 @@ class convert {
     this.methodName = 'lamAlif'
     this.regExpCombination = [
       {
-        // lam + fathah (optional) + alif/hamzah alal alif + bendera(optional)
+        // lam + fathah/fathatain (optional) + alif/hamzah alal alif + bendera(optional)
         regex: new RegExp('\u2807\u2802\u2801(\u282a)?', 'g'),
         // menjadi: lamAlif + tanda bendera (kalo ada)
         replacer: '\u2827$1'
       },
       {
-        // lam + fathatain + alif
-        regex: new RegExp('\u2807\u2806\u2801(\u282a)?', 'g'),
-        // menjadi: lamAlif + fathatain + tanda bendera (kalo ada)
-        replacer: '\u2827\u2806$1'
+        // lam + fathatain + alif + bendera (optional)
+        regex: new RegExp('\u2807(\u2806)\u2801(\u282a)?', 'g'),
+        replacer: '\u2827$1$2'
       }
     ]
     this.convertFunction()
@@ -182,7 +177,7 @@ class convert {
         // jika fathah ketemu alif
         // tanda %m  pada replacer dipakai sebagai marker untuk memudahkan proses debugging.
         regex: new RegExp('\u2802\u2801', 'g'),
-        replacer: '\u2801'
+        replacer: '%m\u2801'
       },
       {
         // jika kasrah ketemu alif maksuro
@@ -199,11 +194,11 @@ class convert {
         regex: new RegExp('\u2811\u280a\u2812?( )?' + arToBraille.semuaHuruf + '+', 'g'),
         replacer: '%m\u280a$1$2'
       },
-      {
+      /* {
         // mengubah hamzah + fathah + alif jadi hamzah mad (⠜)
-        regex : new RegExp('\u2804\u2801|\u280c\u2808', 'g'),
+        regex : new RegExp('\u2804\u2802\u2801|\u280c\u2808', 'g'),
         replacer : '\u281c'
-      } 
+      } */    
     ]
     this.convertFunction()
   }
@@ -223,13 +218,13 @@ class convert {
         // tanda %h pada replacer hanya untuk mempermudah proses debugging.
         //  alif + tanda hidup 
         regex: new RegExp('\u2801' + arToBraille.semuaTandaHidup, 'g'),
-        replacer: '\u280c$1'
+        replacer: '\u280c%h$1'
       },
       {
         // mengubah wassal/hamzah alal alif yang bertemu tanda bendera menjadi alif mad
         regex: new RegExp('[\u280c\u0671]\u282a', 'g'),
         replacer: '\u2801\u282a'
-      }
+      },
     ]
     this.convertFunction()
   }
@@ -285,7 +280,7 @@ class convert {
   
   static newLineToBreak() {
     // biar line space di inputan textarea ngikut
-    arab = arab.replace(/ ?[\n] ?/g, '<br />')
+    arab = arab.replace(/ ?[\n\r] ?/g, '<br />')
   }
 
   static runIt() {
