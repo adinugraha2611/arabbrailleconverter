@@ -1,67 +1,179 @@
-*{margin: 0px;}
-html, body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  width: 100vw;
-  height: 100vh;
+/* General setup */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
-header h1 {
+
+html {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+body {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* typography */
+
+h1,
+h2,
+h3 {
+  color: #2a2a2a;
+}
+
+p,
+input,
+li {
+  color: #2a2a2a;
+}
+
+h1 {
+  font-size: 2.8rem;
   text-align: center;
-  font-size: 22px;
 }
+
+h2 {
+  font-size: 2.4rem;
+  /* text-align: center; */
+}
+
+h3 {
+  font-size: 2.2rem;
+}
+
+p,
+li {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+/* header layout */
+
+nav,
+article,
+aside,
+footer {
+  background-color: white;
+  padding: 1%;
+}
+
+nav {
+  height: 50px;
+  background-color: #aaa;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+nav ul {
+  padding: 0;
+  list-style-type: none;
+  flex: 2;
+  display: flex;
+}
+
+nav li {
+  display: inline;
+  text-align: center;
+  flex: 1;
+}
+
+nav a {
+  display: inline-block;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+  white-space: nowrap;
+}
+
+nav form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 2em;
+}
+
+input {
+  font-size: 1.6rem;
+  height: 32px;
+}
+
+input[type='search'] {
+  flex: 3;
+}
+
+input[type='submit'] {
+  flex: 1;
+  margin-left: 1rem;
+  background: #333;
+  border: 0;
+  color: white;
+}
+
+/* main layout */
+
 #container {
   min-height: 100vh;
   position: relative;
 }
+
 main {
+  display: flex;
   padding-bottom: 21vmin;
-  font-size: 15px;
 }
-label {
+
+.container-home {
+  display: flex;
+}
+
+.arab label {
   display: block;
-  margin: 10px auto;
-  padding: 10px;
-  font-size: 12px;
-  width: 100%;
+  margin-bottom: 5px;
 }
-#text-input {
-  max-height: 40vh;
-  max-width: 100%;
-  text-align: right;
-  font-size: 22px;
-  padding-left: 5vmin;
-  overflow-y: auto;
+
+.arab textarea {
+  height: 100%;
 }
-input[type="button"] {
-  display: block;
-  margin: 15px auto;
-  padding: 5px 10vmin;
-  height: 10vmin;
-  background-color: skyblue;
-  color: white;
+
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 14px;
 }
-#braille {
-  border: 1px solid lightblue;
-  max-height: 40vh;
-  max-width: 100%;
-  margin: 20px auto;
-  padding-left: 5vmin;
-  font-size: 22px;
-  overflow-y: auto;
+
+.button input {
+  align-self: center;
 }
+
+.braille {
+}
+
 article {
-  padding-left: 25px;
+  flex: 4;
 }
+
+aside {
+  flex: 1;
+  margin-left: 10px;
+  background-color: #aaa;
+}
+
+aside li {
+  padding-bottom: 10px;
+}
+
 footer {
   height: 21vmin;
-  line-height: 7vmin;
   position: absolute;
   bottom: 0px;
-  padding-right: 7vmin;
-  width: 100vw;
+  width: 100%;
   background-color: skyblue;
   color: white;
-  font-size: 4vmin;
   text-align: right;
 }
