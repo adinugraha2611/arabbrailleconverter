@@ -137,6 +137,7 @@ main {
 
 .arab textarea {
   height: 100%;
+  width: 100%;
 }
 
 .button {
@@ -149,9 +150,6 @@ main {
 
 .button input {
   align-self: center;
-}
-
-.braille {
 }
 
 article {
