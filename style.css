@@ -183,4 +183,7 @@ footer {
     align-items: center;
     justify-content: center;
   }
+  .arab textarea {
+    align-self: stretch;
+  }
 }
