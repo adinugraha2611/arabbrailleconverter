@@ -138,6 +138,8 @@ main {
 .arab textarea {
   height: 100%;
   width: 100%;
+  text-align: right;
+  overflow-y: auto;
 }
 
 .button {
@@ -150,6 +152,8 @@ main {
 
 .button input {
   align-self: center;
+  background-color: skyblue;
+  color: white;
 }
 
 article {
@@ -182,8 +186,5 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  .arab textarea {
-    align-self: stretch;
   }
 }
