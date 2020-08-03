@@ -201,6 +201,8 @@ footer {
 @media only screen and (max-width: 480px) {
   .container-home {
     display: block;
+  }
+  .arab textarea {
     width: 100%;
     height: 100%;
   }
