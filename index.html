@@ -32,7 +32,22 @@
 				</div>
 				<div class="braille" id="braille" tabindex="0">Tekan tombol Convert untuk mengkonversi</div>
 			</div>
-
+			<div class="bugs-form">
+				<h3>Laporkan Kesalahan</h3>
+				<p>Jika Anda menemukan Kesalahan, mohon kirimkan dengan menisi kolom dibawah ini.</p>
+				<form id="bug" action="/api/bugs" method="POST">
+					<div>
+						<label for="error">Apa yang salah?</label>
+						<input type="text" id="error" placeholder="ال" name="error">
+					</div>
+					<div>
+						<label for="comment">Bagaimana seharusnya?</label>
+						<input type="text" id="comment" placeholder="bukan dot1dot123, tapi seharusnya dot1236" name="comment">
+					</div>
+					<input type="submit" id="sendBtn" value="Kirim">
+					<input type="reset" value="Reset">
+				</form>
+			</div>
 		</main>
 		<footer>
 			<div>Created by Adinugraha, a blind developer.</div>

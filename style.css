@@ -122,8 +122,8 @@ input[type='submit'] {
 }
 
 main {
-  display: flex;
-  padding-bottom: 21vmin;
+  /* display: flex; */
+  padding-bottom: 31vmin;
 }
 
 .container-home {
@@ -174,10 +174,27 @@ main {
   color: white;
 }
 
+.bugs-form {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.bugs-form label,
+input {
+  display: inline-block;
+  margin: 5px;
+}
+
+.bugs-form label {
+  width: 15%;
+  text-align: right;
+  padding-right: 3em;
+}
 article {
   flex: 4;
 }
-
+/*
 aside {
   flex: 1;
   margin-left: 10px;
@@ -187,7 +204,7 @@ aside {
 aside li {
   padding-bottom: 10px;
 }
-
+*/
 footer {
   height: 21vmin;
   position: absolute;
@@ -201,9 +218,9 @@ footer {
 @media only screen and (max-width: 480px) {
   .container-home {
     display: block;
+    height: 50vh;
   }
   .arab textarea {
     width: 100%;
-    height: 100%;
   }
 }
