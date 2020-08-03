@@ -128,10 +128,20 @@ main {
 
 .container-home {
   display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  width: 100%;
+}
+
+.arab {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  flex: 1 0 46%;
+  margin: 10px;
 }
 
 .arab label {
-  display: block;
   margin-bottom: 5px;
 }
 
@@ -142,12 +152,20 @@ main {
   overflow-y: auto;
 }
 
+.braille {
+  flex: 1 0 46%;
+  order: 2;
+  margin: 10px;
+  max-width: 100%;
+}
+
 .button {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 14px;
+  margin: 5px;
+  flex-basis: 100%;
+  order: 3;
 }
 
 .button input {
@@ -182,9 +200,7 @@ footer {
 
 @media only screen and (max-width: 480px) {
   .container-home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* display: block; */
+    display: block;
   }
 }
